@@ -8,7 +8,7 @@ import LoadingScreen from './components/LoadingScreen.jsx';
 import PodcastCard from './components/PodcastCard.jsx';
 import SummaryBar from './components/SummaryBar.jsx';
 
-const SORT_OPTIONS = ['NAME', 'MOST LEFT', 'LEAST LEFT', 'TIME LEFT', 'MOST PLAYED', 'LEAST PLAYED'];
+const SORT_OPTIONS = ['NAME', 'MOST EPS LEFT', 'LEAST EPS LEFT', 'MOST TIME LEFT', 'LEAST TIME LEFT', 'MOST PLAYED', 'LEAST PLAYED'];
 
 export default function App() {
   const [authState, setAuthState] = useState('checking'); // checking | logged_out | logged_in
@@ -161,9 +161,10 @@ export default function App() {
       if (b.error) return -1;
       switch (sortBy) {
         case 'NAME': return a.show.name.localeCompare(b.show.name);
-        case 'MOST LEFT': return b.unplayedCount - a.unplayedCount;
-        case 'LEAST LEFT': return a.unplayedCount - b.unplayedCount;
-        case 'TIME LEFT': return b.totalRemainingMs - a.totalRemainingMs;
+        case 'MOST EPS LEFT': return b.unplayedCount - a.unplayedCount;
+        case 'LEAST EPS LEFT': return a.unplayedCount - b.unplayedCount;
+        case 'MOST TIME LEFT': return b.totalRemainingMs - a.totalRemainingMs;
+        case 'LEAST TIME LEFT': return a.totalRemainingMs - b.totalRemainingMs;
         case 'MOST PLAYED': return b.playedCount - a.playedCount;
         case 'LEAST PLAYED': return a.playedCount - b.playedCount;
         default: return 0;
