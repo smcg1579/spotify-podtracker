@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+:root {
+  --bg-dark: #0d0015;
+  --bg-mid: #1a0030;
+  --bg-card: #2a0050;
+  --bg-card-hover: #3a006a;
+  --pink-bright: #ff69b4;
+  --pink-light: #ffb3d9;
+  --pink-dim: #cc4488;
+  --purple-bright: #cc44ff;
+  --purple-mid: #9933cc;
+  --purple-dim: #661199;
+  --purple-dark: #330066;
+  --cyan-accent: #00ffff;
+  --yellow-accent: #ffff00;
+  --green-accent: #00ff88;
+  --red-accent: #ff4444;
+  --text-main: #ffccee;
+  --text-dim: #aa7799;
+  --border-pink: #ff69b4;
+  --border-purple: #9933cc;
+  --pixel-size: 4px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  image-rendering: pixelated;
+}
+
+body {
+  font-family: 'Press Start 2P', monospace;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16'%3E%3Crect x='0' y='0' width='8' height='8' fill='%23ff69b4'/%3E%3Crect x='8' y='8' width='8' height='8' fill='%23ff69b4'/%3E%3Crect x='0' y='8' width='8' height='8' fill='%23cc44ff'/%3E%3Crect x='8' y='0' width='8' height='8' fill='%23cc44ff'/%3E%3C/svg%3E") 8 8, crosshair;
+}
+
+/* Scanline overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.08) 2px,
+    rgba(0,0,0,0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Starfield background */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,105,180,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 60%, rgba(204,68,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 10%, rgba(255,179,217,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 40%, rgba(204,68,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 80%, rgba(255,105,180,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 20% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 65% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 45% 45%, rgba(204,68,255,0.6) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Pixel border mixin */
+.pixel-border {
+  box-shadow:
+    0 -4px 0 var(--border-pink),
+    4px 0 0 var(--border-pink),
+    0 4px 0 var(--border-pink),
+    -4px 0 0 var(--border-pink),
+    0 -8px 0 var(--border-purple),
+    8px 0 0 var(--border-purple),
+    0 8px 0 var(--border-purple),
+    -8px 0 0 var(--border-purple);
+  image-rendering: pixelated;
+}
+
+.pixel-border-thin {
+  box-shadow:
+    0 -2px 0 var(--border-pink),
+    2px 0 0 var(--border-pink),
+    0 2px 0 var(--border-pink),
+    -2px 0 0 var(--border-pink);
+}
+
+/* Buttons */
+.btn-pixel {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  padding: 12px 20px;
+  background: var(--purple-mid);
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow:
+    inset -4px -4px 0 var(--purple-dark),
+    inset 4px 4px 0 rgba(255,255,255,0.2);
+  transition: transform 0.05s;
+  image-rendering: pixelated;
+}
+
+.btn-pixel:hover {
+  background: var(--purple-bright);
+  box-shadow:
+    inset -4px -4px 0 var(--purple-mid),
+    inset 4px 4px 0 rgba(255,255,255,0.3);
+}
+
+.btn-pixel:active {
+  transform: translate(2px, 2px);
+  box-shadow:
+    inset -2px -2px 0 var(--purple-dark),
+    inset 2px 2px 0 rgba(255,255,255,0.1);
+}
+
+.btn-pixel-pink {
+  background: var(--pink-dim);
+  box-shadow:
+    inset -4px -4px 0 #882244,
+    inset 4px 4px 0 rgba(255,255,255,0.2);
+}
+
+.btn-pixel-pink:hover {
+  background: var(--pink-bright);
+  box-shadow:
+    inset -4px -4px 0 var(--pink-dim),
+    inset 4px 4px 0 rgba(255,255,255,0.3);
+}
+
+/* Input */
+.input-pixel {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  padding: 10px 12px;
+  background: var(--bg-mid);
+  color: var(--pink-light);
+  border: none;
+  outline: none;
+  width: 100%;
+  box-shadow:
+    inset 2px 2px 0 rgba(0,0,0,0.5),
+    0 0 0 2px var(--border-purple);
+  caret-color: var(--pink-bright);
+}
+
+.input-pixel:focus {
+  box-shadow:
+    inset 2px 2px 0 rgba(0,0,0,0.5),
+    0 0 0 2px var(--pink-bright),
+    0 0 12px rgba(255,105,180,0.3);
+}
+
+.input-pixel::placeholder {
+  color: var(--text-dim);
+}
+
+/* Progress bar */
+.progress-bar {
+  height: 16px;
+  background: var(--bg-mid);
+  position: relative;
+  box-shadow: inset 2px 2px 0 rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--pink-bright) 0px,
+    var(--pink-bright) 12px,
+    var(--purple-bright) 12px,
+    var(--purple-bright) 24px
+  );
+  transition: width 0.5s steps(10);
+  image-rendering: pixelated;
+}
+
+/* Blink animation */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes scanline-scroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { text-shadow: 0 0 8px var(--pink-bright), 0 0 16px var(--pink-bright); }
+  50% { text-shadow: 0 0 4px var(--pink-bright); }
+}
+
+@keyframes pixel-spin {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(90deg); }
+  50% { transform: rotate(180deg); }
+  75% { transform: rotate(270deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes slide-in {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.blink { animation: blink 1s step-end infinite; }
+.float { animation: float 2s ease-in-out infinite; }
+.pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-mid);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--purple-mid);
+  box-shadow: inset 2px 2px 0 var(--purple-bright);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pink-dim);
+}
