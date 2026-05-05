@@ -1,4 +1,6 @@
 import { formatDuration } from '../utils/spotify.js';
+import StatusBadge from './StatusBadge';
+
 
 const PIXEL_ICONS = ['🎙️','📻','🎧','📡','🔊','🎵'];
 
@@ -104,6 +106,9 @@ export default function PodcastCard({ data, index, style, onRefresh, isRefreshin
           </div>
           <div style={{ fontSize: '6px', color: 'var(--text-dim)' }}>
             {show.publisher}
+          </div>
+          <div style={{ marginTop: 4 }}>
+            <StatusBadge latestEpisodeDate={show.episodes?.items?.[0]?.release_date} />
           </div>
         </div>
       </div>
