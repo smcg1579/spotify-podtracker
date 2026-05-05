@@ -85,9 +85,11 @@ function buildShowResult(show, episodes, fromCache) {
   const restrictedEpisodes = validEpisodes.filter(ep => !!ep.restrictions);
   const freeStats = calcStats(freeEpisodes);
   const restrictedStats = calcStats(restrictedEpisodes);
+  const latestEpisodeDate = validEpisodes[0]?.release_date ?? null;
 
   return {
     show,
+    latestEpisodeDate,
     totalEpisodes: freeStats.total,
     unplayedCount: freeStats.unplayed,
     playedCount: freeStats.played,
