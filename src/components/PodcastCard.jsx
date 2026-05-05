@@ -108,7 +108,7 @@ export default function PodcastCard({ data, index, style, onRefresh, isRefreshin
             {show.publisher}
           </div>
           <div style={{ marginTop: 4 }}>
-            <StatusBadge latestEpisodeDate={show.episodes?.items?.[0]?.release_date} />
+            <StatusBadge latestEpisodeDate={data.latestEpisodeDate} />
           </div>
         </div>
       </div>
