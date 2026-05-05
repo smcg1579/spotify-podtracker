@@ -7,6 +7,7 @@ import LoginScreen from './components/LoginScreen.jsx';
 import LoadingScreen from './components/LoadingScreen.jsx';
 import PodcastCard from './components/PodcastCard.jsx';
 import SummaryBar from './components/SummaryBar.jsx';
+import StatusBadge from './components/StatusBadge.jsx';
 
 const SORT_OPTIONS = ['NAME', 'MOST EPS LEFT', 'LEAST EPS LEFT', 'MOST TIME LEFT', 'LEAST TIME LEFT', 'MOST PLAYED', 'LEAST PLAYED'];
 
