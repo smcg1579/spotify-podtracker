@@ -64,6 +64,7 @@ export async function exchangeToken(code, clientId) {
 
   if (!res.ok) throw new Error('Token exchange failed');
   const data = await res.json();
+  console.log(data);
 
   const expiry = Date.now() + data.expires_in * 1000;
   localStorage.setItem('spotify_access_token', data.access_token);
