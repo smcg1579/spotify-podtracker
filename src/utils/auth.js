@@ -4,7 +4,7 @@ const SCOPES = [
   'user-read-currently-playing',
 ].join(' ');
 
-const REDIRECT_URI = window.location.origin + window.location.pathname;
+const REDIRECT_URI = "https://spotify-podtracker.vercel.app/";
 
 function generateRandomString(length) {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
